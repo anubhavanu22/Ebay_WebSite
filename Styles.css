@@ -12,6 +12,7 @@ body {
     font-size: 13px;
     border-bottom: 1px solid #ddd;
     max-height: 30px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .left {
@@ -23,7 +24,7 @@ body {
 .menu {
     display: flex;
     list-style: none;
-    gap: 15px;
+    gap: 25px;
     margin-right:200px ;
 }
 
