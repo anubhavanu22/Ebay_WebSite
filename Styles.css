@@ -320,7 +320,6 @@ hr{
     color: black;
 }
 
-/* Responsive Styles for Top navbar */
 .menu-toggle {
     display: none;
     background: none;
@@ -329,6 +328,105 @@ hr{
     cursor: pointer;
 }
 
+/* footer */
+footer {
+    border-top: 1px solid #b3b3b3;
+    background: #f7f7f7;
+    padding: 40px 60px;
+    font-family: Arial, sans-serif;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-column {
+    width: 20%;
+    min-width: 150px;
+}
+
+.footer-column h3 {
+    font-size: 14px;
+    color: #222;
+    margin-bottom: 10px;
+    text-decoration: underline;
+}
+.footer-column h3:hover{
+    text-decoration: none;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 8px;
+}
+
+.footer-column ul li a {
+    text-decoration: none;
+    color: #555;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+.footer-column ul li a:hover {
+    text-decoration: underline;
+    color: black;
+}
+
+/* Social Links */
+.social-links {
+    display: flex;
+    flex-direction: column;
+}
+
+.social-links li a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 12px;
+    color: #777;
+}
+
+.footer-bottom a {
+    color: #0073e6;
+    text-decoration: none;
+}
+
+.footer-bottom a:hover {
+    text-decoration: underline;
+}
+
+/* Country Selector */
+.country-selector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.country-selector img {
+    width: 20px;
+    height: 15px;
+    margin-right: 5px;
+}
+
+
+
+
+/* responsive design for top header */
 @media (max-width: 768px) {
     .navbar-t {
         flex-direction: column;
@@ -401,8 +499,50 @@ hr{
     }
 }
 
+
+/* Responsive Design for Explorepopular category */
+@media screen and (max-width: 1024px) {
+    .box5 {
+        gap: 15px;
+    }
+    .circle {
+        height: 180px;
+        width: 180px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .circle {
+        height: 160px;
+        width: 160px;
+    }
+    .circle img {
+        height: 120px;
+    }
+    .circle p {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .box5 {
+        flex-direction: column;
+        align-items: center;
+    }
+    .circle {
+        height: 140px;
+        width: 140px;
+    }
+    .circle img {
+        height: 100px;
+    }
+    .circle p {
+        font-size: 10px;
+    }
+}
+
+
 /* Responsive Design for Parent-fav */
-/* Responsive Design */
 @media screen and (max-width: 768px) {
     .parent-fav {
         flex-direction: column;
@@ -438,5 +578,30 @@ hr{
     .btn1 button {
         font-size: 12px;
         padding: 6px 14px;
+    }
+}
+
+/* Responsive Design for footer */
+@media screen and (max-width: 1024px) {
+    .footer-column {
+        width: 30%;
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .footer-column {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    footer {
+        padding: 30px;
     }
 }
