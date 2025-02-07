@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ebay Clone</title>
-    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="./css/styles.css">
     <script src="https://kit.fontawesome.com/d792cef6f0.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -114,28 +114,28 @@
     </div>
     <div class="box5">
         <div class="circle">
-            <img src="Images/1.png" alt="Toys"  height="200px">
+            <img src="images/1.png" alt="Toys"  height="200px">
             <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Toys</p>
         </div>
         <div class="circle">
-            <img src="Images/2.png" alt="Cards" height="200px">
+            <img src="images/2.png" alt="Cards" height="200px">
             <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Trading Cards</p>
         </div>
         <div class="circle">
-            <img src="Images/3.png" alt="Refurbished"  height="200px">
+            <img src="images/3.png" alt="Refurbished"  height="200px">
             <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Refurbished</p>
         </div>
         <div class="circle">
-            <img src="Images/4.png" alt="Sneakers"  height="200px">
+            <img src="images/4.png" alt="Sneakers"  height="200px">
             <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sneakers</p>
         </div>
         <div class="circle">
-            <img src="Images/5.png" alt="tire"  height="200px">
+            <img src="images/5.png" alt="tire"  height="200px">
             <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;P&A</p>
         </div>
         
         <div class="circle">
-            <img src="Images/7.png" alt="bag"  height="200px">
+            <img src="images/7.png" alt="bag"  height="200px">
             <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pre-loved Luxury</p>
         </div>
     </div>
@@ -261,6 +261,80 @@
 </footer>
 
 
-    <script src="../script/scrpit.js"></script>
+<!-- below this -->
+<h1>User logged in</h1>
+<h1 class="user-state"></h1>
+<button type="button" class="logout">logout</button>
+<ul>
+    <li><a href="html/login.html">Login</a></li>
+    <li><a href="html/signup.html">Register</a></li>
+</ul>
+
+    <script src="./javascript/scrpit.js"></script>
 </body>
 </html>
+
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+    import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+    import { getDatabase, ref, set,get } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
+    
+    
+    const firebaseConfig = {
+      apiKey: "AIzaSyA-8DveOlIlHvyK813rJbm4q-xTpdtb9n0",
+      authDomain: "users-database-e953e.firebaseapp.com",
+      databaseURL: "https://users-database-e953e-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "users-database-e953e",
+      storageBucket: "users-database-e953e.firebasestorage.app",
+      messagingSenderId: "622398829390",
+      appId: "1:622398829390:web:930571c5fb5aa985a3641f",
+    };
+    
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+    const userStateDiv = document.querySelector('.user-state');
+    const logoutButton = document.querySelector('.logout');
+    
+    // Check user authentication state
+    auth.onAuthStateChanged((user) => {
+      const userStateDiv = document.querySelector('.user-state');
+      const logoutButton = document.querySelector('.logout');
+    
+      if (user) {
+        console.log('User is logged in:', user);
+    
+        // fetching username
+        const userRef = ref(getDatabase(), 'users/' + user.uid);
+        get(userRef).then((snapshot) => {
+          if (snapshot.exists()) {
+            const userData = snapshot.val();
+            userStateDiv.textContent = `User is logged in as: ${userData.personal_Firstname} ${userData.personal_Lastname}`;
+          } else {
+            userStateDiv.textContent = 'No user data available';
+          }
+        });
+    
+        logoutButton.style.display = "inline-block"; 
+      } else {
+        userStateDiv.textContent = 'No user is logged in';
+        logoutButton.style.display = "none"; 
+      }
+    });
+    
+    // Logout function
+    const logoutUser = () => {
+      signOut(auth)
+        .then(() => {
+          console.log('User logged out');
+          window.location.href = '../html/login.html';
+        })
+        .catch((error) => {
+          console.error('Error logging out:', error);
+        });
+    };
+    
+    // event listener to logout
+    logoutButton.addEventListener("click", logoutUser);
+    </script>
