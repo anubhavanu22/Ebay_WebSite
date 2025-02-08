@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Brand Outlet | eBay</title>
-  <link rel="stylesheet" href="brandoutlet.css">
+  <link rel="stylesheet" href="../css/brandoutlet.css">
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
     .one{
       padding: 20px 20px 20px 200px;
@@ -17,23 +18,24 @@
 </head>
 <body>
     <!--  Main navbar  -->
-  <nav class="navbar-t">
-    <button class="menu-toggle"><i class="fa-solid fa-bars"></i></button>
-    <div class="left">
-        <p>Hi! <a href="#">Sign in</a> or <a href="#">register</a></p>
-        <p><a href="#">Daily Deals</a></p>
-        <p><a href="#">Brand Outlet</a></p>
-        <p><a href="#">Gift Cards</a></p>
-        <p><a href="#">Help & Support</a></p>
-    </div>
-    <ul class="menu">
-        <li><a href="#">Sell</a></li>
-        <li><a href="#">Wishlist</a> <i class="fa-solid fa-angle-down"></i></li>
-        <li><a href="#">My eBay</a> <i class="fa-solid fa-angle-down"></i></li>
-        <a href="#"><i class="fa-regular fa-bell"></i></a>
-        <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
-    </ul>
-</nav>
+    <nav class="navbar-t">
+      <button class="menu-toggle"><i class="fa-solid fa-bars"></i></button>
+      <div class="left">
+          <!-- Auth Links will be dynamically updated here -->
+          <p id="auth-links">Hi! <a href="login.html">Sign in</a> or <a href="signup.html">register</a></p>
+          <p><a href="ebayDailyDeals.html">Daily Deals</a></p>
+          <p><a href="brandoutlet.html">Brand Outlet</a></p>
+          <p><a href="giftcard.html">Gift Cards</a></p>
+          <p><a href="help&contact.html">Help & Support</a></p>
+      </div>
+      <ul class="menu">
+          <li><a href="sell.html">Sell</a></li>
+          <li><a href="whishlist.html">Wishlist</a> <i class="fa-solid fa-angle-down"></i></li>
+          <li><a href="cart.html">My eBay</a> <i class="fa-solid fa-angle-down"></i></li>
+          <a href="#"><i class="fa-regular fa-bell"></i></a>
+          <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+      </ul>
+  </nav>
 
 <nav class="navbar-b">
     <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/EBay_logo.svg" alt="eBay Logo" class="logo">
@@ -110,32 +112,94 @@
         <p>Now that you have the essentials, reward yourself. Make sure to pick out a Samsonite or Traveler's Choice suitcase for your upcoming trip or a new bag from Dooney & Bourke.</p>
       </div>
     </main> 
-    <footer>
-      <div >
-        <a class="first" href="#">About </a> 
-        <a class="first" href="#">eBayAnnouncements</a>
-        <a class="first" href="#">Community</a> 
-        <a class="first" href="#">SecurityCenter</a>
-        <a class="first" href="#">Seller Center</a>
-        <a class="first" href="#">Policies</a>
-        <a class="first" href="#">Affiliates</a>
-        <a class="first" href="#">Help & Contact</a>
-        <a class="first" href="#">Site Map</a>
-      </div>
-      <span>
-        Copyright © 1995-2025 eBay Inc. All Rights Reserved.
-        <a href="#">Accessibility,</a>
-        <a href="#">User Agreement,</a>
-        <a href="#">User Agreement, </a>
-        <a href="#">Privacy,</a>
-        <a href="#">Consumer HealthData,</a>
-        <a href="#">Payments Terms of Use,</a>
-        <a href="#">Cookies,</a>
-        <a href="#">CA Privacy Notice,</a>
-        <a href="#">Your Privacy Choices and AdChoice</a>
-              
 
-      </span>
+
+    <!-- last footer part -->
+    <footer class="mt-5 text-sm pt-3 text-center">
+      <p>
+        Copyright © 1995-2025 eBay Inc. All Rights Reserved.
+        <a href="#" class="text-blue-500">Accessibility</a>,
+        <a href="#" class="text-blue-500">User Agreement</a>,
+        <a href="#" class="text-blue-500">Privacy</a>,
+        <a href="#" class="text-blue-500">Payments Terms of Use</a>,
+        <a href="#" class="text-blue-500">Cookies</a>,
+        <a href="#" class="text-blue-500">CA Privacy Notice</a>,
+        <a href="#" class="text-blue-500">Your Privacy Choices</a>, and
+        <a href="#" class="text-blue-500">AdChoice</a>.
+      </p>
     </footer>
 </body>
 </html>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+  import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+  import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
+
+  const firebaseConfig = {
+      apiKey: "AIzaSyA-8DveOlIlHvyK813rJbm4q-xTpdtb9n0",
+      authDomain: "users-database-e953e.firebaseapp.com",
+      databaseURL: "https://users-database-e953e-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "users-database-e953e",
+      storageBucket: "users-database-e953e.firebasestorage.app",
+      messagingSenderId: "622398829390",
+      appId: "1:622398829390:web:930571c5fb5aa985a3641f",
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth();
+  const authLinksDiv = document.getElementById("auth-links");
+
+  const checkLoginState = () => {
+      const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true'; // Check if user is logged in
+      if (isLoggedIn) {
+          const userName = localStorage.getItem('userName');
+          authLinksDiv.innerHTML = `
+              Hi, ${userName}
+              <a href="#" class="logout">Logout</a>
+          `;
+      } else {
+          authLinksDiv.innerHTML = `
+              Hi! <a href="login.html">Sign in</a> or 
+              <a href="signup.html">register</a>
+          `;
+      }
+  };
+
+  window.onload = checkLoginState;
+
+  auth.onAuthStateChanged((user) => {
+      if (user) {
+          const userRef = ref(getDatabase(), "users/" + user.uid);
+          get(userRef).then((snapshot) => {
+              if (snapshot.exists()) {
+                  const userData = snapshot.val();
+                  const userFirstName = userData.personal_Firstname; 
+                  localStorage.setItem('isLoggedIn', 'true');
+                  localStorage.setItem('userName', userFirstName);
+              }
+          });
+      } else {
+          localStorage.setItem('isLoggedIn', 'false');
+          localStorage.removeItem('userName');
+      }
+      checkLoginState();
+  });
+
+  const logoutUser = () => {
+      signOut(auth)
+          .then(() => {
+              localStorage.setItem('isLoggedIn', 'false');
+              localStorage.removeItem('userName');
+              window.location.href = "login.html"; // Redirect to login
+          })
+          .catch((error) => {
+              console.error("Error logging out:", error);
+          });
+  };
+
+  document.body.addEventListener("click", (event) => {
+      if (event.target && event.target.classList.contains("logout")) {
+          logoutUser();
+      }
+  });
+</script>

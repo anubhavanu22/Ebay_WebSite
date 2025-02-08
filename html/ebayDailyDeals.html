@@ -5,11 +5,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/ebayDailyDeals.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <header>
-    
-    </header>
+<!--  Main navbar  -->
+<nav class="navbar-t">
+    <button class="menu-toggle"><i class="fa-solid fa-bars"></i></button>
+    <div class="left">
+        <!-- Auth Links will be dynamically updated here -->
+        <p id="auth-links">Hi! <a href="login.html">Sign in</a> or <a href="signup.html">register</a></p>
+        <p><a href="ebayDailyDeals.html">Daily Deals</a></p>
+        <p><a href="brandoutlet.html">Brand Outlet</a></p>
+        <p><a href="giftcard.html">Gift Cards</a></p>
+        <p><a href="help&contact.html">Help & Support</a></p>
+    </div>
+    <ul class="menu">
+        <li><a href="sell.html">Sell</a></li>
+        <li><a href="whishlist.html">Wishlist</a> <i class="fa-solid fa-angle-down"></i></li>
+        <li><a href="cart.html">My eBay</a> <i class="fa-solid fa-angle-down"></i></li>
+        <a href="#"><i class="fa-regular fa-bell"></i></a>
+        <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+    </ul>
+  </nav>
+  
+      <nav class="navbar-b">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/EBay_logo.svg" alt="eBay Logo" class="logo">
+          <div class="category-dropdown">
+              <p class="category-btn">Shop by Category <i class="fa-solid fa-angle-down"></i> </p>
+              <div class="dropdown-content">
+                  <div class="column">
+                      <h4>Motors</h4>
+                      <p>Parts & Accessories</p>
+                      <p>Cars & Trucks</p>
+                      <p>Motorcycles</p>
+                      <p>Other Vehicles</p>
+                  </div>
+                  <div class="column">
+                      <h4>Electronics</h4>
+                      <p>Computers, Tablets & Network Hardware</p>
+                      <p>Cell Phones, Smart Watches & Accessories</p>
+                      <p>Video Games & Consoles</p>
+                      <p>Cameras & Photo</p>
+                  </div>
+                  <div class="column">
+                      <h4>Collectibles & Art</h4>
+                      <p>Trading Cards</p>
+                      <p>Collectibles</p>
+                      <p>Coins & Paper Money</p>
+                      <p>Sports Memorabilia</p>
+                  </div>
+                  <div class="column">
+                      <h4>Home & Garden</h4>
+                      <p>Yard, Garden & Outdoor Living Items</p>
+                      <p>Tools & Workshop Equipment</p>
+                      <p>Home Improvement</p>
+                      <p>Kitchen, Dining & Bar Supplies</p>
+                  </div>
+              </div>
+          </div>
+          <div class="search-container">
+              <i class="fa-solid fa-magnifying-glass"></i><input type="text" placeholder="Search for anything" class="search-input">
+              <select class="category-dropdown">
+                  <option>All Categories</option>
+                  <option>Electronics</option>
+                  <option>Fashion</option>
+                  <option>Home & Garden</option>
+                  <option>Jewellery</option>
+                  <option>Men's Wear</option>
+                  <option>Women's Wear</option>
+              </select>
+              
+          </div>
+          <button class="search-button">Search</button>
+          <a href="#" class="advanced-search">Advanced</a>
+      </nav> <hr>
+  
+  <!--   main nav bar end -->
     <div id="deals">
      <h2 style="grid-row:1;">Deals</h2>
     <a style="grid-column: 5;" href="Feature">Featured</a>
@@ -120,9 +191,96 @@
          </div>
 
 
-
+    <!-- last footer part -->
+    <footer class="mt-5 text-sm pt-3 text-center">
+        <p>
+          Copyright © 1995-2025 eBay Inc. All Rights Reserved.
+          <a href="#" class="text-blue-500">Accessibility</a>,
+          <a href="#" class="text-blue-500">User Agreement</a>,
+          <a href="#" class="text-blue-500">Privacy</a>,
+          <a href="#" class="text-blue-500">Payments Terms of Use</a>,
+          <a href="#" class="text-blue-500">Cookies</a>,
+          <a href="#" class="text-blue-500">CA Privacy Notice</a>,
+          <a href="#" class="text-blue-500">Your Privacy Choices</a>, and
+          <a href="#" class="text-blue-500">AdChoice</a>.
+        </p>
+      </footer>
 
 
 
 </body>
 </html>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+    import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+    import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
+  
+    const firebaseConfig = {
+        apiKey: "AIzaSyA-8DveOlIlHvyK813rJbm4q-xTpdtb9n0",
+        authDomain: "users-database-e953e.firebaseapp.com",
+        databaseURL: "https://users-database-e953e-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "users-database-e953e",
+        storageBucket: "users-database-e953e.firebasestorage.app",
+        messagingSenderId: "622398829390",
+        appId: "1:622398829390:web:930571c5fb5aa985a3641f",
+    };
+  
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+    const authLinksDiv = document.getElementById("auth-links");
+  
+    const checkLoginState = () => {
+        const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true'; // Check if user is logged in
+        if (isLoggedIn) {
+            const userName = localStorage.getItem('userName');
+            authLinksDiv.innerHTML = `
+                Hi, ${userName}
+                <a href="#" class="logout">Logout</a>
+            `;
+        } else {
+            authLinksDiv.innerHTML = `
+                Hi! <a href="login.html">Sign in</a> or 
+                <a href="signup.html">register</a>
+            `;
+        }
+    };
+  
+    window.onload = checkLoginState;
+  
+    auth.onAuthStateChanged((user) => {
+        if (user) {
+            const userRef = ref(getDatabase(), "users/" + user.uid);
+            get(userRef).then((snapshot) => {
+                if (snapshot.exists()) {
+                    const userData = snapshot.val();
+                    const userFirstName = userData.personal_Firstname; 
+                    localStorage.setItem('isLoggedIn', 'true');
+                    localStorage.setItem('userName', userFirstName);
+                }
+            });
+        } else {
+            localStorage.setItem('isLoggedIn', 'false');
+            localStorage.removeItem('userName');
+        }
+        checkLoginState();
+    });
+  
+    const logoutUser = () => {
+        signOut(auth)
+            .then(() => {
+                localStorage.setItem('isLoggedIn', 'false');
+                localStorage.removeItem('userName');
+                window.location.href = "login.html"; // Redirect to login
+            })
+            .catch((error) => {
+                console.error("Error logging out:", error);
+            });
+    };
+  
+    document.body.addEventListener("click", (event) => {
+        if (event.target && event.target.classList.contains("logout")) {
+            logoutUser();
+        }
+    });
+  </script>
