@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Display Page</title>
-
+    <script src="https://kit.fontawesome.com/d792cef6f0.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
 
     <style>
         body {
@@ -14,6 +15,172 @@
             background-color: #f4f4f4;
             margin-left: 200px;
         }
+        .navbar-t {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  font-size: 13px;
+  border-bottom: 1px solid #ddd;
+  max-height: 30px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.left {
+  display: flex;
+  gap: 25px;
+  margin-left: 200px;
+}
+
+.menu {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+  margin-right:200px ;
+}
+
+.menu li a {
+  text-decoration: none;
+  color: black;
+}
+
+
+.navbar-b {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 20px;
+  margin-left: 200px;
+  margin-right: 200px;
+}
+
+.logo {
+  height: 50px;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  padding-left: 15px;
+  border: 2px solid black;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.search-input {
+  flex-grow: 1;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  outline: none;
+}
+
+.category-dropdown {
+  border: none;
+  /* padding: 10px; */
+  outline: none;
+}
+
+.search-button {
+  background-color: #3460E9;
+  color: white;
+  padding: 10px 50px;
+  border: 1px solid #3460E9;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.search-button:hover{
+  background-color: #3628E5;
+}
+
+.advanced-search {
+  color: #898989;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.advanced-search:hover{
+  color: #3460E9;
+}
+
+/* Sort by category style */
+.category-btn {
+  background: white;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 12px;
+  color: #898989;
+}
+
+.category-btn:hover {
+  background: #f3f3f3;
+}
+
+.category-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background: white;
+  gap: 50px;
+  width: 600px;
+  top: 100%;
+  left: 0;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  z-index: 1000;
+  display: flex;
+  flex-wrap: wrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.column {
+  flex: 1;
+  min-width: 150px;
+  padding: 10px;
+}
+
+.column h4 {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.column p {
+  margin: 5px 0;
+  font-size: 13px;
+  color: #898989;
+  cursor: pointer;
+}
+
+.column p:hover {
+  text-decoration: underline;
+}
+
+/* Show dropdown on hover */
+.category-dropdown:hover .dropdown-content {
+  display: flex;
+  opacity: 1;
+  visibility: visible;
+}
+
+.search-input {
+  flex-grow: 1;
+  padding: 10px;
+  margin-left: 20px;
+  font-size: 14px;
+}
+hr{
+  opacity: 70%;
+  margin-top: 0;
+}
          /* Sidebar styles */
         .sidebar {
             position: fixed;
@@ -147,9 +314,102 @@
                 grid-template-columns: repeat(4, 1fr);
             }
         }
+
+        .same-footer {
+        margin-top: 20px;
+        font-size: 14px; 
+        padding-top: 12px;
+        text-align: center;
+        }
+
+        .same-footer p {
+        margin: 0;
+        }
+
+        .same-link {
+        color: #3b82f6; 
+        text-decoration: none;
+        }
+
+        .same-link:hover {
+        text-decoration: underline;
+        }
     </style>
 </head>
 <body>
+    <!--  Main navbar  -->
+<nav class="navbar-t">
+    <button class="menu-toggle"><i class="fa-solid fa-bars"></i></button>
+    <div class="left">
+        <!-- Auth Links will be dynamically updated here -->
+        <p id="auth-links">Hi! <a href="login.html">Sign in</a> or <a href="signup.html">register</a></p>
+        <p><a href="ebayDailyDeals.html">Daily Deals</a></p>
+        <p><a href="brandoutlet.html">Brand Outlet</a></p>
+        <p><a href="giftcard.html">Gift Cards</a></p>
+        <p><a href="help&contact.html">Help & Support</a></p>
+    </div>
+    <ul class="menu">
+        <li><a href="sell.html">Sell</a></li>
+        <li><a href="wishlist.html">Wishlist</a> <i class="fa-solid fa-angle-down"></i></li>
+        <li><a href="wishlist.html">My eBay</a> <i class="fa-solid fa-angle-down"></i></li>
+        <a href="#"><i class="fa-regular fa-bell"></i></a>
+        <a href="shoppingcart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+    </ul>
+  </nav>
+  
+      <nav class="navbar-b">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/EBay_logo.svg" alt="eBay Logo" class="logo">
+          <div class="category-dropdown">
+              <p class="category-btn">Shop by Category <i class="fa-solid fa-angle-down"></i> </p>
+              <div class="dropdown-content">
+                  <div class="column">
+                      <h4>Motors</h4>
+                      <p>Parts & Accessories</p>
+                      <p>Cars & Trucks</p>
+                      <p>Motorcycles</p>
+                      <p>Other Vehicles</p>
+                  </div>
+                  <div class="column">
+                      <h4>Electronics</h4>
+                      <p>Computers, Tablets & Network Hardware</p>
+                      <p>Cell Phones, Smart Watches & Accessories</p>
+                      <p>Video Games & Consoles</p>
+                      <p>Cameras & Photo</p>
+                  </div>
+                  <div class="column">
+                      <h4>Collectibles & Art</h4>
+                      <p>Trading Cards</p>
+                      <p>Collectibles</p>
+                      <p>Coins & Paper Money</p>
+                      <p>Sports Memorabilia</p>
+                  </div>
+                  <div class="column">
+                      <h4>Home & Garden</h4>
+                      <p>Yard, Garden & Outdoor Living Items</p>
+                      <p>Tools & Workshop Equipment</p>
+                      <p>Home Improvement</p>
+                      <p>Kitchen, Dining & Bar Supplies</p>
+                  </div>
+              </div>
+          </div>
+          <div class="search-container">
+              <i class="fa-solid fa-magnifying-glass"></i><input type="text" placeholder="Search for anything" class="search-input">
+              <select class="category-dropdown">
+                  <option>All Categories</option>
+                  <option>Electronics</option>
+                  <option>Fashion</option>
+                  <option>Home & Garden</option>
+                  <option>Jewellery</option>
+                  <option>Men's Wear</option>
+                  <option>Women's Wear</option>
+              </select>
+              
+          </div>
+          <button class="search-button">Search</button>
+          <a href="ebayAdvance.html" class="advanced-search">Advanced</a>
+      </nav> <hr>
+  
+  <!--   main nav bar end -->
     <div class="sidebar">
         <h2>Categories</h2>
         <ul>
@@ -284,5 +544,93 @@
             <button>Next</button>
         </div>
     </div>
+    <footer class="same-footer">
+        <p>
+          Copyright © 1995-2025 eBay Inc. All Rights Reserved.
+          <a href="#" class="same-link">Accessibility</a>,
+          <a href="#" class="same-link">User Agreement</a>,
+          <a href="#" class="same-link">Privacy</a>,
+          <a href="#" class="same-link">Payments Terms of Use</a>,
+          <a href="#" class="same-link">Cookies</a>,
+          <a href="#" class="same-link">CA Privacy Notice</a>,
+          <a href="#" class="same-link">Your Privacy Choices</a>, and
+          <a href="#" class="same-link">AdChoice</a>.
+        </p>
+      </footer>
+      
 </body>
 </html>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+    import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+    import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
+  
+    const firebaseConfig = {
+        apiKey: "AIzaSyA-8DveOlIlHvyK813rJbm4q-xTpdtb9n0",
+        authDomain: "users-database-e953e.firebaseapp.com",
+        databaseURL: "https://users-database-e953e-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "users-database-e953e",
+        storageBucket: "users-database-e953e.firebasestorage.app",
+        messagingSenderId: "622398829390",
+        appId: "1:622398829390:web:930571c5fb5aa985a3641f",
+    };
+  
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+    const authLinksDiv = document.getElementById("auth-links");
+  
+    const checkLoginState = () => {
+        const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true'; // Check if user is logged in
+        if (isLoggedIn) {
+            const userName = localStorage.getItem('userName');
+            authLinksDiv.innerHTML = `
+                Hi, ${userName}
+                <a href="#" class="logout">Logout</a>
+            `;
+        } else {
+            authLinksDiv.innerHTML = `
+                Hi! <a href="login.html">Sign in</a> or 
+                <a href="signup.html">register</a>
+            `;
+        }
+    };
+  
+    window.onload = checkLoginState;
+  
+    auth.onAuthStateChanged((user) => {
+        if (user) {
+            const userRef = ref(getDatabase(), "users/" + user.uid);
+            get(userRef).then((snapshot) => {
+                if (snapshot.exists()) {
+                    const userData = snapshot.val();
+                    const userFirstName = userData.personal_Firstname; 
+                    localStorage.setItem('isLoggedIn', 'true');
+                    localStorage.setItem('userName', userFirstName);
+                }
+            });
+        } else {
+            localStorage.setItem('isLoggedIn', 'false');
+            localStorage.removeItem('userName');
+        }
+        checkLoginState();
+    });
+  
+    const logoutUser = () => {
+        signOut(auth)
+            .then(() => {
+                localStorage.setItem('isLoggedIn', 'false');
+                localStorage.removeItem('userName');
+                window.location.href = "login.html"; // Redirect to login
+            })
+            .catch((error) => {
+                console.error("Error logging out:", error);
+            });
+    };
+  
+    document.body.addEventListener("click", (event) => {
+        if (event.target && event.target.classList.contains("logout")) {
+            logoutUser();
+        }
+    });
+  </script>

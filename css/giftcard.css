@@ -319,3 +319,25 @@ a{
   margin-top: 50px;
   margin-left: 50px;
 }
+
+
+
+.same-footer {
+  margin-top: 20px;
+  font-size: 14px; 
+  padding-top: 12px;
+  text-align: center;
+  }
+
+  .same-footer p {
+  margin: 0;
+  }
+
+  .same-link {
+  color: #3b82f6; 
+  text-decoration: none;
+  }
+
+  .same-link:hover {
+  text-decoration: underline;
+  }

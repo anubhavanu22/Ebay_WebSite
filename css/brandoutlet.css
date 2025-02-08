@@ -171,7 +171,7 @@ hr{
   margin-top: 0;
 }
 
-/* Responsive Styles for Top navbar */
+/* Responsive Styles for Top navbar upto here */
 .menu-toggle {
   display: none;
   background: none;
@@ -225,3 +225,24 @@ hr{
       width: 100%;
   }
 }
+
+
+.same-footer {
+  margin-top: 20px;
+  font-size: 14px; 
+  padding-top: 12px;
+  text-align: center;
+  }
+
+  .same-footer p {
+  margin: 0;
+  }
+
+  .same-link {
+  color: #3b82f6; 
+  text-decoration: none;
+  }
+
+  .same-link:hover {
+  text-decoration: underline;
+  }
