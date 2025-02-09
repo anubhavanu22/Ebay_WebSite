@@ -34,7 +34,7 @@
 </nav>
 
     <nav class="navbar-b">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/EBay_logo.svg" alt="eBay Logo" class="logo">
+      <a href="../index.html"><img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/EBay_logo.svg" alt="eBay Logo" class="logo"></a>
         <div class="category-dropdown">
             <p class="category-btn">Shop by Category <i class="fa-solid fa-angle-down"></i> </p>
             <div class="dropdown-content">
@@ -95,7 +95,7 @@
         <a href="#">Shop</a>
         <a href="#">How it works</a>
         <a href="#">FAQs</a>
-        <a href="#"><button style="border-radius: 20px;color: white;background-color: blue;">Buy now</button></a>
+        <a href="#"><button style="border-radius: 20px;color: white;background-color: #3460E9;padding: 5px;border: none;">Buy now</button></a>
 
       </div>
       </div>
@@ -108,7 +108,7 @@
           <h1>Win at gifting with
             eBay eGift Cards</h1>
           <h3>Spoil them with choice on any occasion with heartwarming designs and hassle-free redemption.</h3>
-          <a href="#"><button style="border-radius: 20px;color: black;background-color: #ffffff; border: none;">Start gifting</button></a>
+          <a href="#"><button style="border-radius: 20px;color: black;background-color: #ffffff; border: none; padding: 10px;">Start gifting</button></a>
         </div>
         <!-- <div id="banner_footer">
           Powered by Launch Gift Cards, Inc.
@@ -242,6 +242,7 @@
         <a href="#" class="same-link">AdChoice</a>.
       </p>
     </footer>
+    
 </body>
 </html>
 <script type="module">
@@ -315,5 +316,38 @@
       if (event.target && event.target.classList.contains("logout")) {
           logoutUser();
       }
+  });
+
+  const searchInput = document.querySelector(".search-input");
+  const searchbutton = document.querySelector(".search-button");
+  let productName;
+  searchInput.addEventListener("input", (e) => {
+    productName = e.target.value;
+  });
+  searchbutton.addEventListener("click", (e) => {
+    console.log(productName);
+
+    fetch(
+      "https://products-database-7e889-default-rtdb.asia-southeast1.firebasedatabase.app/.json"
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        let filteringData = Object.values(data).filter((item) => {
+          return (
+            item.name &&
+            item.name.toLowerCase().includes(productName.toLowerCase())
+          );
+        });
+
+        // console.log(filteringData);
+        // if (filteringData.length > 0) {
+        localStorage.setItem('filteredProducts', JSON.stringify(filteringData));
+        window.location.href = "laptop.html";
+    // }
+      })
+      .catch((err) => {
+        console.error("Error fetching data:", err);
+      });
+    searchInput.value = "";
   });
 </script>

@@ -23,7 +23,6 @@
   font-size: 13px;
   border-bottom: 1px solid #ddd;
   max-height: 30px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .left {
@@ -182,19 +181,20 @@ hr{
   margin-top: 0;
 }
          /* Sidebar styles */
-        .sidebar {
+         .sidebar {
             position: fixed;
             left: 0;
             top: 0;
             width: 200px;
             height: 100%;
-            background-color: #333;
-            color: white;
+            background-color: #f0e8e8;
+            color: black;
             padding: 20px;
             box-sizing: border-box;
+            margin-top: 80px;
         }
         .sidebar h2 {
-            color: #fff;
+            color: black;
             text-align: center;
             margin-bottom: 30px;
         }
@@ -210,7 +210,7 @@ hr{
         }
 
          .sidebar a {
-            color: white;
+            color: black;
             text-decoration: none;
             padding: 10px;
             display: block;
@@ -339,7 +339,6 @@ hr{
 <body>
     <!--  Main navbar  -->
 <nav class="navbar-t">
-    <button class="menu-toggle"><i class="fa-solid fa-bars"></i></button>
     <div class="left">
         <!-- Auth Links will be dynamically updated here -->
         <p id="auth-links">Hi! <a href="login.html">Sign in</a> or <a href="signup.html">register</a></p>
@@ -358,7 +357,7 @@ hr{
   </nav>
   
       <nav class="navbar-b">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/EBay_logo.svg" alt="eBay Logo" class="logo">
+        <a href="../index.html"><img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/EBay_logo.svg" alt="eBay Logo" class="logo"></a>
           <div class="category-dropdown">
               <p class="category-btn">Shop by Category <i class="fa-solid fa-angle-down"></i> </p>
               <div class="dropdown-content">
@@ -423,6 +422,17 @@ hr{
     </div>
 
     <div class="container">
+        <div class="sidebar">
+            <h2>Categories</h2>
+            <ul>
+                <li><a href="#kitchen">Kitchen</a></li>
+                <li><a href="#furniture">Furniture</a></li>
+                <li><a href="#electronics">Electronics</a></li>
+                <li><a href="#appliances">Appliances</a></li>
+                <li><a href="#decor">Home Decor</a></li>
+                <li><a href="#outdoor">Outdoor</a></li>
+            </ul>
+        </div>
         <div class="product-section">
             <h2>My eBay</h2>
             <div class="product-grid">
@@ -633,4 +643,37 @@ hr{
             logoutUser();
         }
     });
+
+    const searchInput = document.querySelector(".search-input");
+  const searchbutton = document.querySelector(".search-button");
+  let productName;
+  searchInput.addEventListener("input", (e) => {
+    productName = e.target.value;
+  });
+  searchbutton.addEventListener("click", (e) => {
+    console.log(productName);
+
+    fetch(
+      "https://products-database-7e889-default-rtdb.asia-southeast1.firebasedatabase.app/.json"
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        let filteringData = Object.values(data).filter((item) => {
+          return (
+            item.name &&
+            item.name.toLowerCase().includes(productName.toLowerCase())
+          );
+        });
+
+        // console.log(filteringData);
+        // if (filteringData.length > 0) {
+        localStorage.setItem('filteredProducts', JSON.stringify(filteringData));
+        window.location.href = "laptop.html";
+    // }
+      })
+      .catch((err) => {
+        console.error("Error fetching data:", err);
+      });
+    searchInput.value = "";
+  });
   </script>

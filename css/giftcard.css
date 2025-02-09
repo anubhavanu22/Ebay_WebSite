@@ -12,7 +12,6 @@ body {
   font-size: 13px;
   border-bottom: 1px solid #ddd;
   max-height: 30px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .left {
@@ -228,7 +227,7 @@ hr{
 
 /* uas css */
 
-a{
+#right a{
   padding: 5px;
   color: gray;
   text-decoration: none;

@@ -30,7 +30,7 @@
 </nav>
 
     <nav class="navbar-b">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/EBay_logo.svg" alt="eBay Logo" class="logo">
+      <a href="../index.html"><img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/EBay_logo.svg" alt="eBay Logo" class="logo"></a>
         <div class="category-dropdown">
             <p class="category-btn">Shop by Category <i class="fa-solid fa-angle-down"></i> </p>
             <div class="dropdown-content">
@@ -90,22 +90,22 @@
         <a style="padding-left: 20px;"  href="#">Tips for listing</a>
         <a style="padding-left: 20px;"  href="#">FAQ</a>
         <a style="padding-left: 20px;"  href="#">My eBay</a>
-        <a style="padding-left: 20px;"  href="#"><button style="border-radius: 10px; background-color: blue; color: white;">List an item</button></a></span>
+        <a style="padding-left: 20px;"  href="#"><button style="border-radius: 10px; background-color: #3460E9; color: white;padding: 10px;">List an item</button></a></span>
      </div>
 
      <!-- banner section -->
-      <div class="banner">
-        <div class="banner-item">
+      <div class="banner" >
+        <div class="banner-item" style="box-shadow:rgba(0, 0, 0, 0.24) 3px 3px 8px 3px;">
           <h1 style="font-weight: 900;">Make money selling on eBay</h1>
           <p style="font-size: large;">Sell your items fast—millions of buyers are waiting.</p>
 
-          <a href="#"><button style="color: white;background-color: blue;border-radius: 10px;height: 40px; width: 250px; font-size: 29px;">List an item</button></a>
+          <a href="#"><button style="color: white;background-color: #3460E9;border-radius: 10px;height: 40px; width: 250px; font-size: 29px;">List an item</button></a>
         </div>
       </div>
 
       <!-- basics section -->
-      <div>
-        <h1>Learn the basics</h1>
+      <div  style="padding-left: 30px;>
+        <h1">Learn the basics</h1>
       <p>Here's what you need to know to start selling.</p>
       </div>
 
@@ -168,12 +168,12 @@
          </div>
 
          <!-- last banner -->
-          <div class="lastbanner">
-            <div class="lastbanner-item">
+          <div class="lastbanner" style="box-shadow:rgba(0, 0, 0, 0.24) 3px 3px 8px 3px;">
+            <div class="lastbanner-item" style="box-shadow:rgba(0, 0, 0, 0.24) 3px 3px 8px 3px;">
               <h1>You've got this.</h1> 
               <p>We've got your back.
                 </p>
-                <a href="#"><button style="color: white;background-color: blue;border-radius: 10px;width: 150px;height: 30px; ">List an item</button></a>
+                <a href="#"><button style="color: white;background-color: #3460E9;border-radius: 10px;width: 150px;height: 30px; ">List an item</button></a>
             </div>
           </div>
 
@@ -265,5 +265,38 @@
       if (event.target && event.target.classList.contains("logout")) {
           logoutUser();
       }
+  });
+
+  const searchInput = document.querySelector(".search-input");
+  const searchbutton = document.querySelector(".search-button");
+  let productName;
+  searchInput.addEventListener("input", (e) => {
+    productName = e.target.value;
+  });
+  searchbutton.addEventListener("click", (e) => {
+    console.log(productName);
+
+    fetch(
+      "https://products-database-7e889-default-rtdb.asia-southeast1.firebasedatabase.app/.json"
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        let filteringData = Object.values(data).filter((item) => {
+          return (
+            item.name &&
+            item.name.toLowerCase().includes(productName.toLowerCase())
+          );
+        });
+
+        // console.log(filteringData);
+        // if (filteringData.length > 0) {
+        localStorage.setItem('filteredProducts', JSON.stringify(filteringData));
+        window.location.href = "laptop.html";
+    // }
+      })
+      .catch((err) => {
+        console.error("Error fetching data:", err);
+      });
+    searchInput.value = "";
   });
 </script>

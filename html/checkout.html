@@ -3,149 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Checkout</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/checkout.css">
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- <style>
-        .container{
-            border: 3px solid red;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-
-        }
-        form input{
-            padding: 0.8em;
-            border: 1px solid grey;
-        }
-
-        option{
-            padding: 1em;
-            border: 1px solid grey;
-        }
-        .container-2 p{
-            padding: 0.8em;
-            border: 1px solid grey;
-            text-align: left;
-        }
-    </style> -->
 </head>
-<body>  
-    <header>
-        <div>
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/EBay_logo.svg/1200px-EBay_logo.svg.png"
-            class="img-fluid ml-4"
-            width="110"
-            alt=""
-          />
+<body class="bg-gray-100 font-sans">
+  <header class="bg-white shadow-md py-4">
+    <div class="container mx-auto flex justify-center">
+      <a href="../index.html"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/EBay_logo.svg/1200px-EBay_logo.svg.png" alt="eBay Logo" class="w-32" /></a>
+    </div>
+  </header>
+
+  <div class="container mx-auto flex justify-center space-x-12 my-12">
+    <div class="w-full lg:w-1/2 p-8 bg-white rounded-lg shadow-lg">
+      <h2 class="text-2xl font-semibold text-center mb-6">Shipping Details</h2>
+      <form action="" class="space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <input type="text" name="firstName" id="firstName" placeholder="First Name" class="border p-3 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+          <input type="text" name="lastName" id="lastName" placeholder="Last Name" class="border p-3 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
         </div>
-</header>
-<div class="container flex space-x-6">
-    <!-- First Form -->
-    <div class="container-1 width-1/2 p-6">
-        <p>Ship to</p>
-        <form action="" class="space-y-6">
-          <div class="grid grid-cols-2 gap-6">
-            <input type="text" name="firstName" id="firstName" placeholder="First name" class="border p-2">
-            <input type="text" name="lastName" id="lastName" placeholder="Last name" class="border p-2">
-          </div>
-    
-          <div class="grid grid-cols-2 gap-6">
-            <input type="text" name="street" id="street" placeholder="Street address" class="border p-2">
-            <input type="text" name="street2" id="street2" placeholder="Street address 2 (optional)" class="border p-2">
-          </div>
-    
-          <div class="grid grid-cols-2 gap-6">
-            <input type="text" name="city" id="city" placeholder="City" class="border p-2">
-            <select name="state" id="state" class="border p-2">
-              <option value="Maharashtra">Maharashtra</option>
-              <option value="Goa">Goa</option>
-              <option value="Himachal">Himachal</option>
-              <option value="Gujrat">Gujrat</option>
-              <option value="Jammu and Kashmir">Jammu and Kashmir</option>
-            </select>
-          </div>
-    
-          <div class="grid grid-cols-2 gap-6">
-            <input type="number" name="pincode" id="pincode" placeholder="Pincode" class="border p-2">
-            <input type="email" name="email" id="email" placeholder="Email" class="border p-2">
-          </div>
-    
-          <div class="grid grid-cols-2 gap-6">
-            <input type="email" name="confirmEmail" id="confirmEmail" placeholder="Confirm email" class="border p-2">
-            <input type="text" name="countryCode" id="countryCode" disabled value="+91" class="border p-2">
-          </div>
-    
-          <div class="grid grid-cols-2 gap-6">
-            <input type="number" name="mobile" id="mobile" placeholder="Phone number (required)" class="border p-2">
-          </div>
-    
-          <p>We only use this number if there's a shipping issue.</p>
-          <button type="submit" class="bg-blue-500 text-white p-2 rounded">Done</button>
-        </form>
-      </div>
-    <div class="container-2 width-1/2 p-6 border">
-        <div class="flex flex-col justify-center item-center">
-            <div class="flex justify-between">
-                <span>item <span>()</span></span> <span>US <span>$179.99</span></span>
-            </div>
-            <div class="flex justify-between">
-                <span>Shipping <span>()</span></span> <span>US <span>$179.99</span></span>
-            </div>
-            <div class="flex justify-between">
-                <span>discount <span>()</span></span> <span>US <span>$179.99</span></span>
-            </div>
-            <hr>
-            <div>
-                <span>Order Total <span>()</span></span> <span>US <span>$179.99</span></span>
-            </div>
-            <button type="button" class="border p-3 rounded-3xl">Confirm and pay</button>
-            <p>Enter shipping address</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <input type="text" name="street" id="street" placeholder="Street Address" class="border p-3 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+          <input type="text" name="street2" id="street2" placeholder="Street Address 2 (optional)" class="border p-3 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
         </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <input type="text" name="city" id="city" placeholder="City" class="border p-3 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+          <select name="state" id="state" class="border p-3 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            <option value="Maharashtra">Maharashtra</option>
+            <option value="Goa">Goa</option>
+            <option value="Himachal">Himachal</option>
+            <option value="Gujrat">Gujrat</option>
+            <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+          </select>
+          <input type="number" name="pincode" id="pincode" placeholder="Pincode" class="border p-3 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <input type="email" name="email" id="email" placeholder="Email" class="border p-3 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+          <input type="email" name="confirmEmail" id="confirmEmail" placeholder="Confirm Email" class="border p-3 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <input type="text" name="countryCode" id="countryCode" disabled value="+91" class="border p-3 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+          <input type="number" name="mobile" id="mobile" placeholder="Phone Number" class="border p-3 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+        </div>
+
+        <p class="text-sm text-center">We only use this number if there's a shipping issue.</p>
+
+        <!-- <button type="submit" class="doneBtn bg-blue-500 text-white p-3 rounded-lg w-full hover:bg-blue-600">Done</button> -->
+      </form>
+    </div>
+
+    <div class="w-full lg:w-1/2 p-8 bg-white border rounded-lg shadow-lg">
+      <h2 class="text-2xl font-semibold text-center mb-6">Order Summary</h2>
+      <div class="flex justify-between text-sm mb-3">
+        <span>Item</span>
+        <span id="itemCount">0</span>
       </div>
+      <div class="flex justify-between text-sm mb-3">
+        <span>Shipping</span>
+        <span>₹10.00</span>
+      </div>
+      <div class="flex justify-between text-sm mb-3">
+        <span>Discount</span>
+        <span>- ₹10.00</span>
+      </div>
+      <hr class="my-3">
+      <div class="flex justify-between text-lg font-semibold mb-6">
+        <span>Order Total</span>
+        <span id="orderTotal">₹0.00</span>
+      </div>
+      <button type="button" class="doneBtn bg-blue-500 text-white p-3 rounded-xl w-full hover:bg-blue-600">Confirm and Pay</button>
+      <div class="cartItemsContainer flex flex-col items-start mt-6">
+      </div>
+    </div>
   </div>
-
-
-
-
-<!-- <div class="container">
-    <div class="container-1 border-t border-r border-l">
-        <p>Ship to</p>
-    </div>
-    <div class="container-2 border">
-        <form action="" class="flex flex-col">
-            <input class="border p-2 width-1/2" type="text" name="firstName" id="firstName" placeholder="First name">
-            <input class="border p-2 width-1/2" type="text" name="lastName" id="lastName" placeholder="Lastname">
-            <input class="border p-2 width-1/2" type="text" name="street" id="street" placeholder="Street address">
-            <input class="border p-2 width-1/2" type="text" name="street2" id="street2" placeholder="Street address 2 (optional)">
-            <input class="border p-2 width-1/2" type="text" name="city" id="city" placeholder="City">
-
-            <select class="p-2 border width-1/2" name="state" id="state">
-                <option value="Maharashtra">Maharashtra</option>
-                <option value="Goa">Goa</option>
-                <option value="Himachal">Himachal</option>
-                <option value="Gujrat">Gujrat</option>
-                <option value="Jammu and Kashmir">Jammu and Kashmir</option>
-            </select>
-
-            <input class="border p-2 width-1/2" type="number" name="pincode" id="pincode" placeholder="pincode">
-            <input class="border p-2 width-1/2" type="email" name="email" id="email" placeholder="Email">
-            <input class="border p-2 width-1/2" type="email" name="confirmEmail" id="confirmEmail" placeholder="Confirm email">
-
-            <input class="border p-2 width-1/2" type="text" name="countryCode" id="countryCode" disabled value="+91">
-            <input class="border p-2 width-1/2" type="number" name="mobile" id="mobile" placeholder="Phone number (required)">
-            <p>We only use this number if there's a shipping issue.
-            </p>
-            <button type="submit">Done</button>
-        </form>
-    </div>
-</div> -->
-
-<footer class="mt-5 text-sm pt-3 text-center">
+  
+  <footer class="mt-10 text-sm text-center py-3 bg-gray-200">
     <p>
       Copyright © 1995-2025 eBay Inc. All Rights Reserved.
       <a href="#" class="text-blue-500">Accessibility</a>,
@@ -160,3 +96,71 @@
   </footer>
 </body>
 </html>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const cartItemsContainer = document.querySelector('.cartItemsContainer');
+  let total = 0;
+  let itemCount = 0;
+
+  cartItemsContainer.innerHTML = '';
+
+  cart.forEach(item => {
+    const salePrice = +item.salePrice || 0; 
+    const quantity = +item.quantity || 1;    
+    const totalItemPrice = salePrice * quantity;
+
+
+    if (!isNaN(totalItemPrice)) {
+      const productElement = document.createElement('div');
+      productElement.classList.add('flex', 'items-center', 'space-x-6', 'mt-6');
+
+      productElement.innerHTML = `
+        <img src="${item.imageURL}" alt="${item.name}" class="w-24 h-24 object-cover rounded-lg">
+        <div class="flex flex-col justify-between">
+          <a href="#" class="font-semibold text-sm">${item.name}</a>
+          <span class="text-xs text-gray-600">${item.manufacturer}</span>
+          <div class="mt-2 flex items-center space-x-4">
+            <select class="border p-2 rounded-lg text-sm">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+            <span class="text-lg font-semibold">₹${totalItemPrice.toFixed(2)}</span>
+          </div>
+          <div class="flex justify-between text-xs mt-2">
+            <span class="text-green-500">Free Shipping</span>
+            <span class="text-xs text-gray-500">Returns Accepted</span>
+          </div>
+          <div class="flex justify-between text-xs mt-2">
+            <a href="#" class="text-blue-500">Save for later</a>
+            <a href="#" class="text-red-500">Remove</a>
+          </div>
+        </div>
+      `;
+
+      cartItemsContainer.appendChild(productElement);
+
+      total += totalItemPrice;
+      itemCount += quantity;
+    }
+  });
+
+
+  const orderTotalElement = document.getElementById('orderTotal');
+  const itemCountElement = document.getElementById('itemCount');
+  
+  orderTotalElement.textContent = `₹${total.toFixed(2)}`;
+  itemCountElement.textContent = itemCount;
+});
+
+document.querySelector('.doneBtn').addEventListener('click', function(e) {
+  e.preventDefault();
+  localStorage.removeItem('cart');
+  alert("Your cart has been cleared!");
+  window.location.href = "../index.html"; 
+});
+</script>
+
