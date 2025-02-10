@@ -1,5 +1,5 @@
                                                             
-# Smart Cart  
+# Ebay
 💻 Ebay ( clone ) : an ecommerce Website 🚀🎯
 
 ## Overview
