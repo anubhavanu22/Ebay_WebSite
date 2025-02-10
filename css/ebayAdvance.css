@@ -6,6 +6,7 @@
   font-size: 13px;
   border-bottom: 1px solid #ddd;
   max-height: 30px;
+  margin: -10px;
 }
 
 .left {
@@ -220,9 +221,10 @@ button{
   height: 30px;
   padding: 3px;
   border-radius: 20px;
- background-color:blue;
+ background-color:#3460E9;
  color:white;
  margin-right: 10px;
+ border: 0;
 }
 #price{
   width:150px;

@@ -9,7 +9,7 @@
 </head>
 <body>
 
-        <!--  Main navbar  -->
+<!--  Main navbar  -->
 <nav class="navbar-t">
     <div class="left">
         <!-- Auth Links will be dynamically updated here -->
@@ -136,7 +136,7 @@
        
 
 
-        <div style="margin-top: 60px;">
+        <div style="margin-top: 60px;text-align: center;">
             <button id="buy">Buy It Now</button>
             <button id="cart">Add to Cart</button>
             <button id="wishlist">Add to Watchlist</button>
@@ -157,7 +157,7 @@
 
 
 <h2 style="margin-top: 50px; margin-left: 20px;">Similar Items</h2>
-<p style= "margin-left: 23px;">Sponsored <a style="margin-left: 480px;" href="feed">Feed back on our suggestation</a> | <a href="feed">See all</a></p>
+<p style= "margin-left: 23px;">Sponsored <a style="margin-left: 480px;" href="feedback.html">Feed back on our suggestation</a> | <a href="feed">See all</a></p>
 
 
 
@@ -218,12 +218,7 @@
       <a href="#" class="same-link">Your Privacy Choices</a>, and
       <a href="#" class="same-link">AdChoice</a>.
     </p>
-  </footer>
-
-
-  <div class="product-detail" id="product-detail">
-   <h1>Loading Product...</h1> 
-</div> -->
+  </footer> -->
 </body>
 
 </html>
@@ -291,9 +286,9 @@
     </div>
 
     <div id="col-2">
-
-        <img style="margin-top: 70px; margin-left: 60px;" src="${product.thumbnailImage}" alt="Product Thumbnail">
+        <img id="col-2 img" src="${product.thumbnailImage}" alt="Product Thumbnail">
     </div>
+
 
     <div id="col-3">
 
@@ -327,12 +322,13 @@
 
         <p>Free Shipping for orders above ₹999</p><br>
 
-
-        <div style="margin-top: 60px;">
-            <div style="background-color: rgb(21, 74, 220);" id="buy">Buy It Now</div>
+        <div style="margin-top: 60px;text-align: center;">
+            <button type="button" id="buy">Buy It Now</button>
             <button type="button" id="cart">Add to Cart</button>
-            <button type="button" id="cart">Add to Wishlist</button>
+            <button type="button" id="wishlist">Add to Watchlist</button>
         </div>
+
+
     </div>
 `;
             } else {

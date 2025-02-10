@@ -6,6 +6,7 @@
     font-size: 13px;
     border-bottom: 1px solid #ddd;
     max-height: 30px;
+    margin: -10px;
 }
 
 .left {
@@ -360,7 +361,7 @@ border: 1px solid black;
     margin-left: 10px;
     height: 600px;
     width: 100%; 
-    background-color: whitesmoke;
+    /* background-color: whitesmoke; */
     border-radius: 30px;
     display: flex;
     justify-content: center; 
@@ -369,11 +370,13 @@ border: 1px solid black;
 }
 
 #col-2 img {
-    max-width: 90%;
-    max-height: 90%; 
-    border-radius: 20px; 
-    object-fit: contain;
+    margin: 0 auto;
+    width: 80%;        
+    height: 80%;   
+    border-radius: 20px;
+    object-fit: cover; 
 }
+
 #col-3{
     margin-left: 10px;
 

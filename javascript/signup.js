@@ -50,7 +50,7 @@ document.querySelector("#signup-form").addEventListener("submit", async (e) => {
 
     // console.log("User data stored in the database!");
     alert('Business account created successfully!');
-    window.location.href = '../html/home.html';
+    window.location.href = '../index.html';
   } catch (error) {
     console.error("Error creating user: ", error.message);
   }

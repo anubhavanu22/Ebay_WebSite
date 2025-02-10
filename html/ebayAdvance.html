@@ -6,6 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="../css/ebayAdvance.css">
     <script src="https://kit.fontawesome.com/d792cef6f0.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
 </head>
 <body>
         <!--  Main navbar  -->
@@ -75,7 +76,7 @@
           </select>
           
       </div>
-      <button class="search-button">Search</button>
+      <button class="search-button" style="text-align: center;margin-right: 10px;display: flex; justify-content: center;align-items: center;">Search</button>
       <a href="ebayAdvance.html" class="advanced-search">Advanced</a>
   </nav> <hr>
   
@@ -407,38 +408,115 @@
      </body>
      </html>
 
-<script>
-    const searchInput = document.querySelector(".search-input");
-  const searchbutton = document.querySelector(".search-button");
-  let productName;
-  searchInput.addEventListener("input", (e) => {
-    productName = e.target.value;
-  });
-  searchbutton.addEventListener("click", (e) => {
-    console.log(productName);
-
-    fetch(
-      "https://products-database-7e889-default-rtdb.asia-southeast1.firebasedatabase.app/.json"
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        let filteringData = Object.values(data).filter((item) => {
-          return (
-            item.name &&
-            item.name.toLowerCase().includes(productName.toLowerCase())
-          );
-        });
-
-        // console.log(filteringData);
-        // if (filteringData.length > 0) {
-        localStorage.setItem('filteredProducts', JSON.stringify(filteringData));
-        window.location.href = "laptop.html";
-    // }
-      })
-      .catch((err) => {
-        console.error("Error fetching data:", err);
-      });
-    searchInput.value = "";
-  });
+     <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+      import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+      import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
     
-</script>
+      const firebaseConfig = {
+          apiKey: "AIzaSyA-8DveOlIlHvyK813rJbm4q-xTpdtb9n0",
+          authDomain: "users-database-e953e.firebaseapp.com",
+          databaseURL: "https://users-database-e953e-default-rtdb.asia-southeast1.firebasedatabase.app",
+          projectId: "users-database-e953e",
+          storageBucket: "users-database-e953e.firebasestorage.app",
+          messagingSenderId: "622398829390",
+          appId: "1:622398829390:web:930571c5fb5aa985a3641f",
+      };
+    
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth();
+      const authLinksDiv = document.getElementById("auth-links");
+    
+      const checkLoginState = () => {
+          const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true'; // Check if user is logged in
+          if (isLoggedIn) {
+              const userName = localStorage.getItem('userName');
+              authLinksDiv.innerHTML = `
+                  Hi, ${userName}
+                  <a href="#" class="logout">Logout</a>
+              `;
+          } else {
+              authLinksDiv.innerHTML = `
+                  Hi! <a href="login.html">Sign in</a> or 
+                  <a href="signup.html">register</a>
+              `;
+          }
+      };
+    
+      window.onload = checkLoginState;
+    
+      auth.onAuthStateChanged((user) => {
+          if (user) {
+              const userRef = ref(getDatabase(), "users/" + user.uid);
+              get(userRef).then((snapshot) => {
+                  if (snapshot.exists()) {
+                      const userData = snapshot.val();
+                      const userFirstName = userData.personal_Firstname; 
+                      localStorage.setItem('isLoggedIn', 'true');
+                      localStorage.setItem('userName', userFirstName);
+                  }
+              });
+          } else {
+              localStorage.setItem('isLoggedIn', 'false');
+              localStorage.removeItem('userName');
+          }
+          checkLoginState();
+      });
+    
+      const logoutUser = () => {
+          signOut(auth)
+              .then(() => {
+                  localStorage.setItem('isLoggedIn', 'false');
+                  localStorage.removeItem('userName');
+                  window.location.href = "login.html"; // Redirect to login
+              })
+              .catch((error) => {
+                  console.error("Error logging out:", error);
+              });
+      };
+    
+      document.body.addEventListener("click", (event) => {
+          if (event.target && event.target.classList.contains("logout")) {
+              logoutUser();
+          }
+      });
+    
+      const searchInput = document.querySelector(".search-input");
+      const searchbutton = document.querySelector(".search-button");
+      let productName;
+      searchInput.addEventListener("input", (e) => {
+        productName = e.target.value;
+      });
+      searchbutton.addEventListener("click", (e) => {
+        console.log(productName);
+    
+        fetch(
+          "https://products-database-7e889-default-rtdb.asia-southeast1.firebasedatabase.app/.json"
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            let filteringData = Object.values(data).filter((item) => {
+              return (
+                item.name &&
+                item.name.toLowerCase().includes(productName.toLowerCase())
+              );
+            });
+    
+            // console.log(filteringData);
+            // if (filteringData.length > 0) {
+            localStorage.setItem('filteredProducts', JSON.stringify(filteringData));
+            window.location.href = "laptop.html";
+        // }
+          })
+          .catch((err) => {
+            console.error("Error fetching data:", err);
+          });
+        searchInput.value = "";
+      });
+    
+      const chatButton = document.getElementById('chatButton');
+        const chatContainer = document.getElementById('chatContainer');
+        chatButton.addEventListener('click', () => {
+          chatContainer.classList.toggle('hidden');
+        });
+    </script>

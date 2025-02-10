@@ -86,8 +86,8 @@
             <a href="./feedback.html"><p>Send Us your comments</p> </a>
         </ul>
     </div>
-    <div class="notification-bar">
-        You're signed out right now. To save these items or see your previously saved items, <a href="#">sign in</a>.
+    <div class="notification-bar" id="notification-bar">
+        You're signed out right now. To save these items or see your previously saved items, <a href="login.html">sign in</a>.
     </div>
 
     <div class="container">
@@ -205,19 +205,24 @@
     const auth = getAuth();
     const authLinksDiv = document.getElementById("auth-links");
   
+    const notificationBar = document.querySelector(".notification-bar")
     const checkLoginState = () => {
         const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true'; // Check if user is logged in
         if (isLoggedIn) {
             const userName = localStorage.getItem('userName');
             authLinksDiv.innerHTML = `
-                Hi, ${userName}
+                Hi, ${userName} 
                 <a href="#" class="logout">Logout</a>
             `;
+            notificationBar.innerHTML = `Hi, ${userName} Below are you cart items`;
         } else {
             authLinksDiv.innerHTML = `
                 Hi! <a href="login.html">Sign in</a> or 
                 <a href="signup.html">register</a>
             `;
+            notificationBar.innerHTML = `
+            You're signed out right now. To save these items or see your previously saved items, <a href="login.html">sign in</a>.
+        `;
         }
     };
   
