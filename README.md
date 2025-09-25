@@ -41,18 +41,6 @@ To get started with the project, follow these steps:
 3. Start the server using
 4. Open the application in your browser at 
 
-## Our Contributers
-
-Raj
-amir
-akshay
-utkarsh
-anubhav
-
-## Contributing
-
-Contributions to the project are welcome! To contribute, follow these steps:
-
 1. Fork the repository
 2. Create a new branch for your changes
 3. Make your changes and commit them
